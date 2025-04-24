@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TarefaService} from "../../app-core/service/tarefa.service";
+import {Tarefa} from "../../app-core/model/tarefa";
+declare var $ : any;
 
 @Component({
   selector: 'app-visualizar-tarefas',
@@ -8,18 +10,27 @@ import {TarefaService} from "../../app-core/service/tarefa.service";
 })
 export class VisualizarTarefasComponent implements OnInit {
 
-  i: number =0;
+  tarefas: Tarefa[] = [];
 
   constructor(private tarefaService: TarefaService) {
-
+    this.tarefas= tarefaService.popularTabelaTeste();
   }
 
   ngOnInit(): void {
+
   }
 
   addtarefa(){
-    this.tarefaService.addTarefa("TAREFA " + this.i);
-    this.i++;
+    this.tarefaService.addTarefa("TAREFA ");
+    //this.i++;
+  }
+
+  openModal(){
+    $('#add-tarefa').modal('show');
+  }
+
+  closeModal(){
+    $('#add-tarefa').modal('hide');
   }
 
 }
