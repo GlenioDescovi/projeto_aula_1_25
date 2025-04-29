@@ -47,8 +47,8 @@
       <div class="modal-header">
         <h5 class="modal-title">Adicionar Tarefa</h5>
       </div>
-      <div class="modal-body">
-        <form>
+      <form [formGroup]="form" (ngSubmit)="salvarTarefa()">
+        <div class="modal-body">
           <div class="form-row">
             <!--titulo-->
             <div class="mb-3 col-md-12">
@@ -93,9 +93,8 @@
               </textarea>
             </div>
           </div>
-        </form>
       </div>
-      <div class="modal-footer">
+        <div class="modal-footer">
         <button class="btn btn-secondary"
                 type="button" data-bs-dismiss="modal"
         (click)="closeModal()">Fechar
@@ -104,6 +103,7 @@
                 type="button"
                 (click)="addtarefa()">Salvar</button>
       </div>
+      </form>
     </div>
   </div>
 </div>

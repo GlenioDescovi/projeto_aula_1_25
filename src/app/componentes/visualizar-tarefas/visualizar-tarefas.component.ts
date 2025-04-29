@@ -45,4 +45,8 @@ export class VisualizarTarefasComponent implements OnInit {
     $('#add-tarefa').modal('hide');
   }
 
+  salvarTarefa(){
+    console.log(this.form.value);
+  }
+
 }
