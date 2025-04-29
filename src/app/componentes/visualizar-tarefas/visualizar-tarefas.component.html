@@ -57,6 +57,7 @@
               </label>
               <input type="text" class="form-control"
                      id="tituloTarefa"
+                     formControlName="tituloTarefa"
                      placeholder="Digite o título da tarefa">
             </div>
             <!--data inicio-->
@@ -66,7 +67,8 @@
               </label>
               <input class="form-control"
                      type="datetime-local"
-                     id="dataInicioTarefa">
+                     id="dataInicioTarefa"
+                     formControlName="dataInicioTarefa">
             </div>
             <!--data conclusao-->
             <div class="mb-3 col-md-6">
@@ -75,12 +77,14 @@
               </label>
               <input class="form-control"
                      type="datetime-local"
-                     id="dataConclusaoTarefa">
+                     id="dataConclusaoTarefa"
+                     formControlName="dataConclusaoTarefa">
             </div>
             <!--status-->
             <div class="md-3 col">
               <label>Status</label>
-              <select class="form-control">
+              <select class="form-control"
+              formControlName="statusTarefa">
                 <option value="NOVA">Nova</option>
                 <option value="EM_ANDAMENTO">Em andamento</option>
                 <option value="CONCLUIDA">Conluída</option>
@@ -89,20 +93,20 @@
             <!--descricao-->
             <div class="md-12 col-md-12">
               <label>Descrição da Tarefa</label>
-              <textarea class="form-control" rows="3">
+              <textarea class="form-control" rows="3"
+              formControlName="descricaoTarefa">
               </textarea>
             </div>
           </div>
       </div>
         <div class="modal-footer">
-        <button class="btn btn-secondary"
+          <button class="btn btn-secondary"
                 type="button" data-bs-dismiss="modal"
         (click)="closeModal()">Fechar
         </button>
-        <button class="btn btn-success"
-                type="button"
-                (click)="addtarefa()">Salvar</button>
-      </div>
+          <button class="btn btn-success"
+                type="submit">Salvar</button>
+        </div>
       </form>
     </div>
   </div>
