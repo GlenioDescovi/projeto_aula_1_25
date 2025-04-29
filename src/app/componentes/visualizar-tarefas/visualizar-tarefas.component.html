@@ -50,6 +50,7 @@
       <div class="modal-body">
         <form>
           <div class="form-row">
+            <!--titulo-->
             <div class="mb-3 col-md-12">
               <label for="tituloTarefa"
                      class="form-label">Título Tarefa
@@ -58,6 +59,7 @@
                      id="tituloTarefa"
                      placeholder="Digite o título da tarefa">
             </div>
+            <!--data inicio-->
             <div class="mb-3 col-md-6">
               <label class="form-label"
                     for="dataInicioTarefa">Data Inicio
@@ -66,7 +68,7 @@
                      type="datetime-local"
                      id="dataInicioTarefa">
             </div>
-
+            <!--data conclusao-->
             <div class="mb-3 col-md-6">
               <label class="form-label"
                      for="dataConclusaoTarefa">Data Conclusão
@@ -75,7 +77,21 @@
                      type="datetime-local"
                      id="dataConclusaoTarefa">
             </div>
-
+            <!--status-->
+            <div class="md-3 col">
+              <label>Status</label>
+              <select class="form-control">
+                <option value="NOVA">Nova</option>
+                <option value="EM_ANDAMENTO">Em andamento</option>
+                <option value="CONCLUIDA">Conluída</option>
+              </select>
+            </div>
+            <!--descricao-->
+            <div class="md-12 col-md-12">
+              <label>Descrição da Tarefa</label>
+              <textarea class="form-control" rows="3">
+              </textarea>
+            </div>
           </div>
         </form>
       </div>

@@ -7,6 +7,7 @@ import { CabecalhoComponent } from './componentes/cabecalho/cabecalho.component'
 import { RodapeComponent } from './componentes/rodape/rodape.component';
 import { PaginaInicialComponent } from './componentes/pagina-inicial/pagina-inicial.component';
 import { VisualizarTarefasComponent } from './componentes/visualizar-tarefas/visualizar-tarefas.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { VisualizarTarefasComponent } from './componentes/visualizar-tarefas/vis
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
