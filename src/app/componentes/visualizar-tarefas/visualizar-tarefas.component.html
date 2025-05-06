@@ -59,6 +59,11 @@
                      id="tituloTarefa"
                      formControlName="tituloTarefa"
                      placeholder="Digite o título da tarefa">
+
+              <div *ngIf="isCampoValido('tituloTarefa')"
+                   class="text-danger">
+                Campo Obrigatório
+              </div>
             </div>
             <!--data inicio-->
             <div class="mb-3 col-md-6">
@@ -69,6 +74,10 @@
                      type="datetime-local"
                      id="dataInicioTarefa"
                      formControlName="dataInicioTarefa">
+              <div *ngIf="isCampoValido('dataInicioTarefa')"
+                   class="text-danger">
+                Campo Obrigatório
+              </div>
             </div>
             <!--data conclusao-->
             <div class="mb-3 col-md-6">
@@ -79,6 +88,10 @@
                      type="datetime-local"
                      id="dataConclusaoTarefa"
                      formControlName="dataConclusaoTarefa">
+              <div *ngIf="isCampoValido('dataConclusaoTarefa')"
+                   class="text-danger">
+                Campo Obrigatório
+              </div>
             </div>
             <!--status-->
             <div class="md-3 col">
@@ -89,6 +102,11 @@
                 <option value="EM_ANDAMENTO">Em andamento</option>
                 <option value="CONCLUIDA">Conluída</option>
               </select>
+              <div *ngIf="isCampoValido('statusTarefa')"
+                   class="text-danger">
+                Campo Obrigatório
+              </div>
+
             </div>
             <!--descricao-->
             <div class="md-12 col-md-12">
@@ -96,6 +114,10 @@
               <textarea class="form-control" rows="3"
               formControlName="descricaoTarefa">
               </textarea>
+              <div *ngIf="isCampoValido('descricaoTarefa')"
+                   class="text-danger">
+                Campo Obrigatório
+              </div>
             </div>
           </div>
       </div>

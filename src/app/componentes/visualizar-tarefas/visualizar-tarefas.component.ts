@@ -46,7 +46,27 @@ export class VisualizarTarefasComponent implements OnInit {
   }
 
   salvarTarefa(){
-    console.log(this.form.value);
+    if(this.form.valid){
+      console.log(this.form.value);
+      console.log("CADASTRO REALIZADO COM SUCESSO");
+      this.form.reset();
+
+    }else{
+      console.log("CAMPOS INVALIDOS ENCONTRADOS");
+      this.marcarTodosComoClicados();
+    }
+  }
+
+  marcarTodosComoClicados(){
+    Object.values(this.form.controls)
+      .forEach(campo => {
+        campo.markAsTouched();
+      });
+  }
+
+  isCampoValido(inputName: string): boolean {
+    const campo: any = this.form.get(inputName);
+    return campo && campo.touched && campo.invalid;
   }
 
 }
