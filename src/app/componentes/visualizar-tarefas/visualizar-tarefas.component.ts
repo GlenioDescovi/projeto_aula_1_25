@@ -3,6 +3,9 @@ import {TarefaService} from "../../app-core/service/tarefa.service";
 import {Tarefa} from "../../app-core/model/tarefa";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 declare var $ : any;
+import Swal from "sweetalert2";
+
+
 
 @Component({
   selector: 'app-visualizar-tarefas',
@@ -49,10 +52,22 @@ export class VisualizarTarefasComponent implements OnInit {
     if(this.form.valid){
       console.log(this.form.value);
       console.log("CADASTRO REALIZADO COM SUCESSO");
-      this.form.reset();
+      let deuCerto = true;
+      if(deuCerto){
+        Swal.fire('Sucesso!',
+          'Tarefa Salva com sucesso',
+          'success');
+        this.form.reset();
 
+      }else{
+        Swal.fire('Não foi dessa vez!',
+        'Não foi possível salvar a tarefa!, Tente novamente mais tarde.',
+        'error');
+      }
     }else{
       console.log("CAMPOS INVALIDOS ENCONTRADOS");
+      Swal.fire("Atenção!", "Alguns campos do formulário" +
+                " não estão corretos.", 'warning');
       this.marcarTodosComoClicados();
     }
   }
