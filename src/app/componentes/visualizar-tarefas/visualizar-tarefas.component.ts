@@ -53,6 +53,7 @@ export class VisualizarTarefasComponent implements OnInit {
       console.log(this.form.value);
       console.log("CADASTRO REALIZADO COM SUCESSO");
       let deuCerto = true;
+
       if(deuCerto){
         Swal.fire('Sucesso!',
           'Tarefa Salva com sucesso',
