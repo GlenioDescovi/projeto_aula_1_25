@@ -1,6 +1,6 @@
 export class Tarefa {
 
-  id: number;
+  id?: number;
   titulo: string;
   dataInicio: string;
   dataConclusao: string;
@@ -12,7 +12,7 @@ export class Tarefa {
               dataConclusao: string,
               status: string,
               descricao: string,
-              id: number) {
+              id?: number) {
 
     this.titulo = titulo;
     this.dataInicio = dataInicio;

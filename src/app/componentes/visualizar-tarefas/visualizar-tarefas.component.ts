@@ -16,10 +16,10 @@ export class VisualizarTarefasComponent implements OnInit {
 
   tarefas: Tarefa[] = [];
   form: FormGroup;
+  loading: boolean = true;
 
   constructor(private tarefaService: TarefaService,
               private fb: FormBuilder) {
-    this.tarefas= tarefaService.popularTabelaTeste();
 
     this.form = this.fb.group({
       tituloTarefa: ['',Validators.required],
@@ -32,12 +32,16 @@ export class VisualizarTarefasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.listartarefas();
   }
 
-  addtarefa(){
-    this.tarefaService.addTarefa("TAREFA ");
-    //this.i++;
+  listartarefas(){
+    this.loading= true;
+    this.tarefaService.buscarTarefas()
+      .then(reposta => {
+        this.tarefas= reposta;
+        this.loading=false;
+      });
   }
 
   openModal(){
@@ -48,23 +52,40 @@ export class VisualizarTarefasComponent implements OnInit {
     $('#add-tarefa').modal('hide');
   }
 
+  submitForm(){
+    if(this.form.value.id > 0){
+      //VAMOS CHAMAR A FUNÇÃO DE EDITAR A TAREFA
+    }else{
+      //VAMOS CHAMAR A FUNÇÃO DE SALVAR A TAREFA
+      this.salvarTarefa();
+    }
+  }
+
   salvarTarefa(){
     if(this.form.valid){
-      console.log(this.form.value);
-      console.log("CADASTRO REALIZADO COM SUCESSO");
-      let deuCerto = true;
+      const novaTarefa: Tarefa =
+        new Tarefa(
+          this.form.value.tituloTarefa,
+          this.form.value.dataInicioTarefa,
+          this.form.value.dataConclusaoTarefa,
+          this.form.value.statusTarefa,
+          this.form.value.descricaoTarefa);
 
-      if(deuCerto){
-        Swal.fire('Sucesso!',
-          'Tarefa Salva com sucesso',
-          'success');
-        this.form.reset();
+      this.tarefaService.adicionarTarefa(novaTarefa)
+        .then(reposta => {
+            if(reposta > 0){
+              Swal.fire('Sucesso!', 'Tarefa Salva com sucesso!',
+                         'success');
+              this.form.reset();
+              this.closeModal();
+              this.listartarefas();
+            }
+        }).catch(respostaErro => {
+        Swal.fire('Não foi dessa vez!', 'Não foi possível salvar' +
+          ' a tarefa, tente novamente mais tarde.', 'error');
+        console.log(respostaErro);
+      });
 
-      }else{
-        Swal.fire('Não foi dessa vez!',
-        'Não foi possível salvar a tarefa!, Tente novamente mais tarde.',
-        'error');
-      }
     }else{
       console.log("CAMPOS INVALIDOS ENCONTRADOS");
       Swal.fire("Atenção!", "Alguns campos do formulário" +
