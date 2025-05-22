@@ -17,6 +17,7 @@ export class VisualizarTarefasComponent implements OnInit {
   tarefas: Tarefa[] = [];
   form: FormGroup;
   loading: boolean = true;
+  tarefaVisualizar: any;
 
   constructor(private tarefaService: TarefaService,
               private fb: FormBuilder) {
@@ -104,6 +105,11 @@ export class VisualizarTarefasComponent implements OnInit {
   isCampoValido(inputName: string): boolean {
     const campo: any = this.form.get(inputName);
     return campo && campo.touched && campo.invalid;
+  }
+
+  setTarefaAtual(t: Tarefa){
+
+    this.tarefaVisualizar = t;
   }
 
 }

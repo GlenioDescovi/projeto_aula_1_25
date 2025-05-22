@@ -31,6 +31,14 @@
           - <button class="btn btn-warning rounded-circle">
             <i class="fas fa-edit"></i>
           </button>
+          - <button type="button"
+                    class="btn btn-primary rounded-circle"
+                    data-toggle="modal"
+                    data-target="#tarefaModal"
+                    (click)="setTarefaAtual(t)">
+              <i class="fas fa-eye"></i>
+            </button>
+
         </td>
       </tr>
     </tbody>
@@ -41,7 +49,7 @@
     <h3>CARREGANDO...</h3>
   </div>
 </div>
-
+<!-- MODAL DE CADASTRO/EDIÇÃO -->
 <div class="modal" tabindex="-1" id="add-tarefa">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -134,4 +142,48 @@
     </div>
   </div>
 </div>
+
+<!-- MODAL DE VISUALIZAR TAREFA -->
+<div class="modal fade" id="tarefaModal" tabindex="-1"
+     role="dialog" aria-labelledby="visualizar"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="Visualizar">
+          Datelhes da Tarefa
+        </h5>
+        <button class="close" type="button"
+                data-dismiss="modal" aria-label="Close">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body">
+        <p> <strong>Título: </strong>
+          {{ tarefaVisualizar?.titulo }}
+        </p>
+        <p> <strong>Descrição: </strong>
+          {{ tarefaVisualizar?.descricao }}
+        </p>
+        <p> <strong>Status: </strong>
+          {{ tarefaVisualizar?.status }}
+        </p>
+        <p> <strong>Data Inicio: </strong>
+          {{ tarefaVisualizar?.dataInicio | date: 'dd/MM/yyyy' }}
+        </p>
+        <p> <strong>Data Conclusão: </strong>
+          {{ tarefaVisualizar?.dataConclusao | date: 'dd/MM/yyyy' }}
+        </p>
+        <p> <strong>Imagem:</strong> EM CONSTRUÇÃO </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary"
+                type="button"
+                data-dismiss="modal">Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
