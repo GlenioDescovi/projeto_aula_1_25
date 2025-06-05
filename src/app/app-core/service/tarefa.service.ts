@@ -27,4 +27,12 @@ export class TarefaService extends Dexie{
     return await this.tarefas.add(tarefa);
   }
 
+  async removerTarefa(id: number): Promise<void> {
+    return await this.tarefas.delete(id);
+  }
+
+  async atualizarTarefa(id:number, tarefa: Tarefa)
+    : Promise<number>{
+     return await this.tarefas.update(id, tarefa);
+  }
 }
