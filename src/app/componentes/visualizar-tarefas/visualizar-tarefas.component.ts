@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 declare var $ : any;
 import Swal from "sweetalert2";
 import {error} from "@angular/compiler-cli/src/transformers/util";
+import {TarefaServiceApiService} from "../../app-core/service/tarefa-service-api.service";
 
 
 
@@ -16,12 +17,14 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
 export class VisualizarTarefasComponent implements OnInit {
 
   tarefas: Tarefa[] = [];
+  tarefasApi: Tarefa[] = [];
   form: FormGroup;
   loading: boolean = true;
   tarefaVisualizar: any;
 
   constructor(private tarefaService: TarefaService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private tarefaServiceApi: TarefaServiceApiService) {
 
     this.form = this.fb.group({
       tituloTarefa: ['',Validators.required],
@@ -30,7 +33,11 @@ export class VisualizarTarefasComponent implements OnInit {
       statusTarefa: ['', Validators.required],
       descricaoTarefa: ['', Validators.required],
       id: [0],
+      imagem: ['']
     });
+
+
+    this.buscarTarefasApi();
 
   }
 
@@ -73,7 +80,9 @@ export class VisualizarTarefasComponent implements OnInit {
           this.form.value.dataInicioTarefa,
           this.form.value.dataConclusaoTarefa,
           this.form.value.statusTarefa,
-          this.form.value.descricaoTarefa);
+          this.form.value.descricaoTarefa,
+          undefined,
+          this.form.value.imagem);
 
       this.tarefaService.adicionarTarefa(novaTarefa)
         .then(reposta => {
@@ -165,7 +174,9 @@ export class VisualizarTarefasComponent implements OnInit {
         this.form.value.dataInicioTarefa,
         this.form.value.dataConclusaoTarefa,
         this.form.value.statusTarefa,
-        this.form.value.descricaoTarefa
+        this.form.value.descricaoTarefa,
+        this.form.value.id,
+        this.form.value.imagem
       );
       this.tarefaService.
        atualizarTarefa(this.form.value.id,editarTarefa).then(
@@ -194,5 +205,25 @@ export class VisualizarTarefasComponent implements OnInit {
                 'warning');
       this.marcarTodosComoClicados();
     }
+  }
+
+  onFileChange(event: any){
+    const file = event.target.files[0];
+    if(file){
+      const reader = new FileReader();
+      reader.onload=
+        (loadEvent) => {
+        this.form.patchValue({imagem:
+          loadEvent?.target?.result});
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  buscarTarefasApi(){
+    this.tarefaServiceApi.buscarTarefa().
+         subscribe(repostaDoService =>{
+           this.tarefasApi= repostaDoService;
+    });
   }
 }

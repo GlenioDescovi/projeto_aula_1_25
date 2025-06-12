@@ -6,13 +6,15 @@ export class Tarefa {
   dataConclusao: string;
   status: string;
   descricao: string;
+  imagem?: string;
 
   constructor(titulo: string,
               dataInicio: string,
               dataConclusao: string,
               status: string,
               descricao: string,
-              id?: number) {
+              id?: number,
+              imagem?: string) {
 
     this.titulo = titulo;
     this.dataInicio = dataInicio;
@@ -20,5 +22,6 @@ export class Tarefa {
     this.status = status;
     this.descricao = descricao;
     this.id = id;
+    this.imagem = imagem;
   }
 }

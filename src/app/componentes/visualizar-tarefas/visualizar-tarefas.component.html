@@ -138,6 +138,11 @@
                 Campo Obrigatório
               </div>
             </div>
+            <div class="md-3 col">
+              <hr>
+              <input type="file" accept="image/*"
+                     (change)="onFileChange($event)">
+            </div>
           </div>
       </div>
         <div class="modal-footer">
@@ -184,7 +189,12 @@
         <p> <strong>Data Conclusão: </strong>
           {{ tarefaVisualizar?.dataConclusao | date: 'dd/MM/yyyy' }}
         </p>
-        <p> <strong>Imagem:</strong> EM CONSTRUÇÃO </p>
+        <img [src]="tarefaVisualizar?.imagem"
+             alt="Imagem da tarefa"
+             *ngIf="tarefaVisualizar?.imagem"
+              style="max-width: 100%;
+                     max-height: 300px;
+                     height: auto;">
       </div>
       <div class="modal-footer">
         <button class="btn-secondary"
