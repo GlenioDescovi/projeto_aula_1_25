@@ -68,7 +68,8 @@ export class VisualizarTarefasComponent implements OnInit {
       this.editarTarefa();
     }else{
       //VAMOS CHAMAR A FUNÇÃO DE SALVAR A TAREFA
-      this.salvarTarefa();
+      //this.salvarTarefa();
+      this.salvarTarefaApi();
     }
   }
 
@@ -226,4 +227,34 @@ export class VisualizarTarefasComponent implements OnInit {
            this.tarefasApi= repostaDoService;
     });
   }
+
+  salvarTarefaApi(){
+    if(this.form.valid){
+      const novaTarefa: Tarefa =
+        new Tarefa(
+          this.form.value.tituloTarefa,
+          this.form.value.dataInicioTarefa,
+          this.form.value.dataConclusaoTarefa,
+          this.form.value.statusTarefa,
+          this.form.value.descricaoTarefa,
+          undefined,
+          this.form.value.imagem);
+      this.tarefaServiceApi.salvarTarefa(novaTarefa)
+        .subscribe(retornoApi => {
+          if(retornoApi){
+            Swal.fire("Sucesso!",
+              "Tarefa Salva com Sucesso!", 'success');
+            this.form.reset();
+            this.closeModal();
+            this.tarefas.push(retornoApi);
+          }
+        })
+    }else{
+      console.log("CAMPOS INVALIDOS ENCONTRADOS");
+      Swal.fire("Atenção!", "Alguns campos do formulário" +
+        " não estão corretos.", 'warning');
+      this.marcarTodosComoClicados();
+    }
+  }
+
 }

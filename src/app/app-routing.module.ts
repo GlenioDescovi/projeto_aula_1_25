@@ -5,10 +5,8 @@ import {VisualizarTarefasComponent} from "./componentes/visualizar-tarefas/visua
 
 const routes: Routes = [
   {path: "", redirectTo: "pagina-inicial", pathMatch: "full"},
-
   {path: "pagina-inicial",
     component: PaginaInicialComponent},
-
   {path: "visualizar-tarefas",
     component: VisualizarTarefasComponent}
 ];
